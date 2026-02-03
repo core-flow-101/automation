@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+
+    <!-- Настройки проверки длины строк на уровне Checker -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+
+    <!-- TreeWalker для анализа структуры кода -->
+    <module name="TreeWalker">
+
+        <module name="UnusedImports"/>
+        <module name="AvoidStarImport"/>
+        <module name="EmptyBlock"/>
+        <module name="NeedBraces"/>
+        <module name="EqualsHashCode"/>
+
+        <module name="MethodLength">
+            <property name="max" value="60"/>
+        </module>
+
+    </module>
+
+</module>

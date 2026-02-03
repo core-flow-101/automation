@@ -15,6 +15,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+
+    // Отдельная конфигурация для Checkstyle
+    checkstyle
 }
 
 repositories {
@@ -29,9 +32,26 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Checkstyle dependency
+    checkstyle 'com.puppycrawl.tools:checkstyle:10.18.0'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
 
+task runCheckstyle(type: JavaExec) {
+    group = "verification"
+    description = "Run Checkstyle manually on main source code"
+
+    classpath = configurations.checkstyle
+    main = 'com.puppycrawl.tools.checkstyle.Main'
+
+    args = [
+            "-c", "${projectDir}/checkstyle.xml",
+            "src/main/java"
+    ]
+
+    ignoreExitValue = false
+}
