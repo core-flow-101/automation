@@ -4,11 +4,7 @@ FROM gradle:8.5-jdk17 AS build
 WORKDIR /app
 
 
-COPY build.gradle settings.gradle ./
-COPY gradle gradle
-
-
-COPY src src
+COPY . .
 
 
 RUN gradle build -x test --no-daemon
