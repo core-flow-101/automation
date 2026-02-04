@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//Добавим импорт который не используется
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
 
-    // test comment for testing
     @Autowired
     private StudentRepository studentRepository;
 
@@ -49,4 +51,3 @@ public class StudentController {
         return response;
     }
 }
-
