@@ -3,8 +3,8 @@ package com.example.application.controller;
 import com.example.application.dto.StudentRequest;
 import com.example.application.dto.StudentResponse;
 import com.example.application.entity.Student;
-import com.example.application.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.application.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,32 +14,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//Добавим импорт который не используется
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
+@RequiredArgsConstructor
 public class StudentController {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentService studentService;
+
 
     @PostMapping
     public ResponseEntity<StudentResponse> createStudent(@RequestBody StudentRequest request) {
-        Student student = new Student();
-        student.setFirstName(request.getFirstName());
-        student.setLastName(request.getLastName());
-        student.setStudyGroup(request.getStudyGroup());
-
-        Student savedStudent = studentRepository.save(student);
-        return ResponseEntity.status(HttpStatus.CREATED).body(toResponse(savedStudent));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(toResponse(studentService.createStudent(request)));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
-        return studentRepository.findById(id)
-                .map(student -> ResponseEntity.ok(toResponse(student)))
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(toResponse(studentService.getStudentById(id)));
     }
 
     private StudentResponse toResponse(Student student) {
