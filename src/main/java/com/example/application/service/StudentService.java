@@ -28,7 +28,7 @@ public class StudentService {
         }
 
         Student student = new Student();
-        student.setFirstName(request.getFirstName().trim());
+        student.setFirstName("Invalid name");
         student.setLastName(request.getLastName().trim());
         student.setStudyGroup(request.getStudyGroup().trim());
 
