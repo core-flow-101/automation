@@ -40,6 +40,7 @@ public class StudentController {
         response.setFirstName(student.getFirstName());
         response.setLastName(student.getLastName());
         response.setStudyGroup(student.getStudyGroup());
+        response.setEmail(student.getEmail());
         return response;
     }
 }

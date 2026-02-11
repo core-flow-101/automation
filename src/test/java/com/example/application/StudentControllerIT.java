@@ -48,6 +48,7 @@ class StudentControllerIT {
         request.setFirstName("Misha");
         request.setLastName("Ivanov");
         request.setStudyGroup("A-101");
+        request.setEmail("misha.kremloy@gmail.com");
 
         ResponseEntity<String> response = restTemplate.postForEntity(
                 "http://localhost:" + port + "/api/students",
@@ -66,6 +67,7 @@ class StudentControllerIT {
         request.setFirstName("Anna");
         request.setLastName("Petrova");
         request.setStudyGroup("B-202");
+        request.setEmail("misha.kremloy@gmail.com");
 
         ResponseEntity<String> createResponse = restTemplate.postForEntity(
                 "http://localhost:" + port + "/api/students",

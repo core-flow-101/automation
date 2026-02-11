@@ -39,11 +39,13 @@ class StudentServiceTest {
         request.setFirstName("Misha");
         request.setLastName("Ivanov");
         request.setStudyGroup("A-101");
+        request.setEmail("misha.kremloy@gmail.com");
 
         Student savedStudent = new Student();
         savedStudent.setFirstName("Misha");
         savedStudent.setLastName("Ivanov");
         savedStudent.setStudyGroup("A-101");
+        savedStudent.setEmail("misha.kremloy@gmail.com");
 
         when(studentRepository.save(any(Student.class))).thenReturn(savedStudent);
 
@@ -110,6 +112,7 @@ class StudentServiceTest {
         request.setFirstName("  Misha  ");
         request.setLastName("  Ivanov ");
         request.setStudyGroup(" A-101 ");
+        request.setEmail("misha.kremloy@gmail.com");
 
         when(studentRepository.save(any()))
                 .thenAnswer(inv -> inv.getArgument(0));

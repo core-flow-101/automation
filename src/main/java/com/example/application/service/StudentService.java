@@ -28,9 +28,10 @@ public class StudentService {
         }
 
         Student student = new Student();
-        student.setFirstName("Invalid name");
+        student.setFirstName(request.getFirstName().trim());
         student.setLastName(request.getLastName().trim());
         student.setStudyGroup(request.getStudyGroup().trim());
+        student.setEmail(request.getEmail().trim());
 
         return studentRepository.save(student);
     }

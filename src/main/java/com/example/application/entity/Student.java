@@ -29,5 +29,7 @@ public class Student {
 
     @Column(nullable = false)
     private String studyGroup;
+
+    private String email;
 }
 

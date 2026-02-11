@@ -12,5 +12,6 @@ public class StudentResponse {
     private String firstName;
     private String lastName;
     private String studyGroup;
+    private String email;
 }
 
